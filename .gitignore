@@ -1,1 +1,5 @@
 projetos/
+
+# Cache de build do Vite
+.vite/
+src/frontend/.vite/

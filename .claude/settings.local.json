@@ -45,7 +45,21 @@
       "Bash(awk '{print \" atualizado:\",$6,$7,$8}')",
       "Bash(awk '{print \" porta:\",$4}')",
       "Bash(curl -s -o /dev/null -w \" backend health: HTTP %{http_code}\\\\n\" http://localhost:3001/api/v1/health)",
-      "Bash(curl -s -o /dev/null -w \" frontend: HTTP %{http_code}\\\\n\" http://localhost:5173/)"
+      "Bash(curl -s -o /dev/null -w \" frontend: HTTP %{http_code}\\\\n\" http://localhost:5173/)",
+      "Bash(node *)",
+      "Bash(curl -s -I http://localhost:5173/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" -H \"Accept: text/html\" http://localhost:5173/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" -H \"Accept: text/html,application/xhtml+xml\" -H \"User-Agent: Mozilla/5.0\" http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" -H \"Host: localhost:5173\" http://127.0.0.1:5173/)",
+      "Bash(curl -s -D - \"http://localhost:5173/login\" -H \"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8\" -H \"User-Agent: Mozilla/5.0 \\(X11; Linux x86_64\\) AppleWebKit/537.36\")",
+      "Bash(ps -o pid,ppid,cmd -p 406275)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://195.35.16.84:5173/login)",
+      "Bash(E2E_BASE_URL=http://localhost:5180 npx playwright test tests/e2e/04-rollback-ux.spec.js --config playwright.e2e-tmp.config.js --repeat-each=5 --reporter=list)",
+      "Bash(curl -s -X POST http://localhost:3001/api/v1/auth/login -H \"Content-Type: application/json\" -d '{\"email\":\"alice@taskflow.dev\",\"password\":\"senha123\"}')",
+      "Bash(pkill -f \"vite --port 5180\")",
+      "Bash(curl -s -o /dev/null -w \"5180 now: %{http_code}\\\\n\" http://localhost:5180/)",
+      "Bash(tmux send-keys *)"
     ]
   }
 }
