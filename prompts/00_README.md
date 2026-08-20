@@ -28,7 +28,7 @@ Analista → Back-end + Front-end (paralelo) → DevOps (sobe o ambiente) → Te
 Os agentes se comunicam via arquivos. Estrutura esperada no projeto:
 
 ```
-/seu-projeto/
+~/minha-equipe/projetos/<seu-projeto>/
   requisitos.md          ← Analista escreve
   etapas_dev.md          ← Analista escreve
   api_contract.md        ← Back-end escreve
@@ -37,8 +37,8 @@ Os agentes se comunicam via arquivos. Estrutura esperada no projeto:
   devops_report.md       ← DevOps escreve (URLs, portas, status)
   test_report_white.md   ← Tester Branca escreve (PASS/FAIL)
   test_report_black.md   ← Tester Preta escreve (PASS/FAIL)
-  /src/backend/
-  /src/frontend/
+  /src/backend/          ← Back-end escreve
+  /src/frontend/         ← Front-end escreve
 ```
 
 ### 4. Loop de revisão (pseudocódigo)
@@ -52,8 +52,8 @@ for i in range(MAX_ITERACOES):
     # DevOps sobe o ambiente antes dos testes
     run_agent("devops", context=["requisitos.md", "backend_spec.md", "frontend_spec.md"])
 
-    white = run_agent("tester_branca", context=["backend_spec.md", "/src/backend/"])
-    black = run_agent("tester_preta", context=["frontend_spec.md", "/src/frontend/"])
+    white = run_agent("tester_branca", context=["backend_spec.md", "src/backend/"])
+    black = run_agent("tester_preta", context=["frontend_spec.md", "src/frontend/"])
 
     if white.status == "PASS" and black.status == "PASS":
         break  # ✅ Concluído
